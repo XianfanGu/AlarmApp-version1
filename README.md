@@ -1,6 +1,6 @@
 # AlarmApp-version2
 
-[![Codacy Badge][codacy-img]]
+![Codacy Badge][codacy-img]
 TestActivity
 
 
