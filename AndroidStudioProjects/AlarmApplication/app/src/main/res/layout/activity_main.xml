@@ -35,7 +35,7 @@
         android:id="@+id/deviceList"
         android:layout_below="@+id/contact_button"
         android:layout_alignStart="@+id/contact_button"
-        android:layout_marginTop="52dp" />
+        android:layout_marginTop="30dp" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
         android:id="@+id/option"
         android:layout_below="@+id/deviceList"
         android:layout_alignStart="@+id/deviceList"
-        android:layout_marginTop="52dp" />
+        android:layout_marginTop="30dp" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,7 +51,15 @@
         android:id="@+id/gps"
         android:layout_below="@+id/option"
         android:layout_alignStart="@+id/option"
-        android:layout_marginTop="52dp" />
+        android:layout_marginTop="30dp" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test"
+        android:id="@+id/test"
+        android:layout_below="@+id/gps"
+        android:layout_alignStart="@+id/option"
+        android:layout_marginTop="30dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
