@@ -61,7 +61,7 @@ import java.util.UUID;
 
 // A service that interacts with the BLE device via the Android BLE API.
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class BluetoothLeService extends Service {
+public class BluetoothLeService extends Service{
     public static final int SUCCESS_RESULT = 0;
     public static final int FAILURE_RESULT = 1;
     public static final String PACKAGE_NAME = "com.example.admin.alarmapplication";
@@ -117,6 +117,7 @@ public class BluetoothLeService extends Service {
     private Cursor sqLiteCursor;
     private MyIntentService myIntentService;
     private boolean bound = false;
+    private static scanCallbackInterface scanListner;
     private ServiceConnection serviceConnection = new ServiceConnection() {
 
         @Override
@@ -216,6 +217,7 @@ public class BluetoothLeService extends Service {
             bound = false;
         }
     }
+
 
     @TargetApi(Build.VERSION_CODES.M)
     public void scanLeDevice(final boolean enable) {
@@ -320,6 +322,9 @@ public class BluetoothLeService extends Service {
             return accuracy;
         }
     }
+    public static void setOnDisplayRefreshListener(scanCallbackInterface myListener) {
+        scanListner = myListener;
+    }
     // Device scan callback.
     private ScanCallback mLeScanCallback =
             new ScanCallback() {
@@ -393,9 +398,11 @@ public class BluetoothLeService extends Service {
                                 if(matchData((IBeacon)structure,result.getDevice()))
                                 {
                                     //connDevice(result.getDevice());
-                                    if(sendTimes==0)
+                                    if(sendTimes==0 && scanListner!=null)
                                     {
-                                        sendSMS();
+                                        Log.i("device5","test");
+                                        scanListner.setPos(sendSMS());
+                                        //Log.i("device6",sendSMS().toString());
                                         sendTimes+=1;
                                     }
 
@@ -433,7 +440,7 @@ public class BluetoothLeService extends Service {
                                 //connDevice(device);
                                 if(sendTimes==0)
                                 {
-                                    sendSMS();
+                                    scanListner.setPos(sendSMS());
                                     sendTimes+=1;
                                 }
 
@@ -569,19 +576,23 @@ public class BluetoothLeService extends Service {
         return mBluetoothAdapter;
 
     }
-    private void sendSMS(){
+    private String[] sendSMS(){
+        String pos[] = new String[2];
         String longitude=null;
         String latitude=null;
         String SENT = "SMS_SENT";
         PendingIntent sentPI;
         contact_table_Helper=new NameListOpen(getApplicationContext());
         contact_table = contact_table_Helper.getReadableDatabase();
-        sqLiteCursor= contact_table.rawQuery("select * from "+CONTACTS_LIST_TABLE,null);
+        //sqLiteCursor= contact_table.rawQuery("select * from "+CONTACTS_LIST_TABLE,null);
 
         if(myIntentService!=null) {
             longitude= myIntentService.getPos().get("longitude").toString();
             latitude = myIntentService.getPos().get("latitude").toString();
         }
+        pos[0] = latitude;
+        pos[1] = longitude;
+        /**
         if(sqLiteCursor.getCount()>0) {
             sqLiteCursor.moveToFirst();
             do {
@@ -592,6 +603,7 @@ public class BluetoothLeService extends Service {
                         smsManager.sendTextMessage(sqLiteCursor.getString(sqLiteCursor.getColumnIndex(KEY_PHONE)), null, "I am in emergency situation, please try contacting me" +
                                 "\n"+ "My Location: "+"http://maps.google.com/maps?q=" + latitude + "," + longitude, sentPI, null);
                         Log.i(TAG, sqLiteCursor.getString(sqLiteCursor.getColumnIndex(KEY_PHONE)));
+
                     }
                     catch (Exception e)
                     {
@@ -610,6 +622,8 @@ public class BluetoothLeService extends Service {
             }while(sqLiteCursor.moveToNext());
             sqLiteCursor.close();
         }
+         **/
+        return pos;
     }
 
 }

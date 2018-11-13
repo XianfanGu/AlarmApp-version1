@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private Button optionButton;
     private Button bleButton;
     private Button positionButton;
+    private Button testButton;
     private Button saveList;
     private Intent bleservice;
     private Intent serviceintent;
@@ -91,6 +92,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, DeviceScanActivity.class);
+                startActivity(intent);
+            }
+        });
+        testButton = (Button)findViewById(R.id.test);
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TestActivity.class);
                 startActivity(intent);
             }
         });
