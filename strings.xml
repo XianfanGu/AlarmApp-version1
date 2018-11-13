@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">AlarmApplication</string>
+    <string name="button"> </string>
+    <string name="error_permission_GPS">The GPS permission is denied</string>
+    <string name="title_activity_contacts">ContactsActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="error_GPS">Can not read GPS</string>
+    <string name="unknown_device">Unknown Device</string>
+    <string name="no_result">No devices are found</string>
+    <string name="nothing"></string>
+    <string name="reDevice">Do you want to remember the device?</string>
+    <string name="titleDevice">save Device</string>
+    <string name="okbutttom">OK</string>
+    <string name="cancelbuttom">CANCEL</string>
+    <string name="founddevice">a device is alarming</string>
+    <string name="notfounddevice">no device alarmed</string>
+    <string name="error_bluetooth_not_supported">this device does not support Bluetooth BLE</string>
+    <string name="ble_not_supported">this device does not support BLE</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
