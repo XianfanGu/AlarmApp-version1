@@ -1,9 +1,19 @@
 # AlarmApp-version2
 ![Codacy Badge][codacy-img2]
+
+
 MainActivity
+
+
 ![Codacy Badge][codacy-img3]
+
+
 BLE list (name: null, address: FC:39:85:17:0C:09 )
+
+
 ![Codacy Badge][codacy-img]
+
+
 TestActivity
 
 
